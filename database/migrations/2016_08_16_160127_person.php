@@ -12,11 +12,14 @@ class Person extends Migration
      */
     public function up()
     {
-        Schema::create('person', function (Blueprint $table) {
+        Schema::create('people', function (Blueprint $table) {
             $table->integer('id')->unique();
             $table->string('real_name')->nullable();
             $table->string('email', 45)->nullable();
             $table->integer('sex');
+            $table->timestamps();
+
+
         });
     }
 

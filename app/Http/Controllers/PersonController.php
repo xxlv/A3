@@ -17,17 +17,25 @@ class PersonController extends Controller
         $this->middleware('auth');
     }
 
+
     public function index(Request $req)
+    {
+
+        return view('person.index')->with('lists',Person::all());
+
+    }
+
+    public function post(Request $req)
     {
 
         //do post
         if ($req->isMethod('post')) {
+
             $data = $req->only([
                 'real_name',
                 'email',
                 'sex'
             ]);
-
 
             if (Person::create($data)) {
                 return redirect()->back();

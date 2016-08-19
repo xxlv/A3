@@ -19,4 +19,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::match(['get', 'post'], '/person', 'PersonController@index');
+Route::get('/person', 'PersonController@index');
+
+Route::match(['post'], '/person', 'PersonController@post');
+
