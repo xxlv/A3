@@ -15,11 +15,11 @@ class DinnerController extends Controller
     }
 
 
-    public function index()
+    public function show()
     {
 
         $dinner = Dinner::where(['uid' => \Auth::user()->id])->first();
-        return view('dinner.index')->with('dinner', $dinner);
+        return view('dinner.show')->with('dinner', $dinner);
     }
 
 
@@ -33,14 +33,16 @@ class DinnerController extends Controller
     {
         $dinner = Dinner::find($id);
         $dinner->delete();
-        return back();
+        return redirect(url('/dinner/edit'));
     }
 
-    public function addDinnerStore(Request $request)
+    public function store(Request $request)
     {
 
         $this->validate($request, [
-            'name' => 'required|max:3'
+            'name' => 'required|max:3',
+            'begin_at'=>'required',
+            'end_at'=>'required'
         ]);
 
         $input = request()->all();
@@ -60,6 +62,6 @@ class DinnerController extends Controller
         $dinner->dinner_time = $input['dinner_time'];
         $dinner->save();
 
-        return redirect('dinner');
+        return redirect('dinner/show');
     }
 }

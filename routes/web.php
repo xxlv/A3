@@ -19,3 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/dinner', 'DinnerController@show');
+Route::get('/dinner/edit', 'DinnerController@edit');
+Route::get('/dinner/show', 'DinnerController@show');
+Route::get('/dinner/delete/{id}', 'DinnerController@delete');
+Route::post('/dinner/store','DinnerController@store');
