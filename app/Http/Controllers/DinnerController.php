@@ -17,8 +17,10 @@ class DinnerController extends Controller
 
     public function show()
     {
-
         $dinner = Dinner::where(['uid' => \Auth::user()->id])->first();
+        if (!$dinner) {
+            return redirect('/dinner/edit');
+        }
         return view('dinner.show')->with('dinner', $dinner);
     }
 
@@ -41,8 +43,8 @@ class DinnerController extends Controller
 
         $this->validate($request, [
             'name' => 'required|max:3',
-            'begin_at'=>'required',
-            'end_at'=>'required'
+            'begin_at' => 'required',
+            'end_at' => 'required'
         ]);
 
         $input = request()->all();
