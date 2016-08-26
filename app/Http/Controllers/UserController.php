@@ -10,7 +10,10 @@ class UserController extends Controller
 {
 
     public function notifications(){
-        return view('user.notifications');
+
+        $notifications=\Auth::user()->notifications()->paginate(15);
+
+        return view('user.notifications')->with('notifications',$notifications);
     }
 
 }

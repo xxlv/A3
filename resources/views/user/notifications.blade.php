@@ -22,7 +22,7 @@
                     @endif
 
                     <ul class="list-group">
-                        @foreach(Auth::user()->notifications()->get() as $notify)
+                        @foreach($notifications as $notify)
                             @if($notify->type=='App\Notifications\DinnerNotice')
                                 <li class="list-group-item">
                                     @if($notify->read_at)
@@ -38,6 +38,8 @@
                             @endif
                         @endforeach
                     </ul>
+
+                    {{ $notifications->links() }}
 
                 </div>
             </div>

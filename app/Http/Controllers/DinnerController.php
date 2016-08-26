@@ -17,6 +17,7 @@ class DinnerController extends Controller
 
     public function show()
     {
+
         $dinner = Dinner::where(['uid' => \Auth::user()->id])->first();
         if (!$dinner) {
             return redirect('/dinner/edit');
