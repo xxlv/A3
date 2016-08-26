@@ -20,7 +20,9 @@ class NoticeApiController extends Controller
     }
 
     public function markAsRead(User $user){
+
         $user->notifications->map(function($n){
+
             $n->markAsRead();
         });
         return back();

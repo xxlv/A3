@@ -64,7 +64,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ url('/user/notifications')}}">Notification</a>
+                                <a href="{{ url('/user/notifications')}}">Notifications</a>
                             </li>
 
                             <li>
