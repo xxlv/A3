@@ -8,13 +8,16 @@ use Illuminate\Http\Request;
 class DinnerController extends Controller
 {
 
-
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-
+    /**
+     * Show the user dinner info
+     *
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function show()
     {
 
@@ -25,13 +28,35 @@ class DinnerController extends Controller
         return view('dinner.show')->with('dinner', $dinner);
     }
 
-
+    /**
+     * Edit dinner info by auth user id
+     *
+     * @return $this
+     */
     public function edit()
     {
+        $views=[];
         $dinner = Dinner::where(['uid' => \Auth::user()->id])->first();
-        return view('dinner.edit')->with('dinner', $dinner);
+
+        if ($dinner) {
+
+            $views['tips']=[
+                'level'=>'success',
+                'title'=>'Hey '.\Auth::user()->name,
+                'content'=>'I help u fill this form now !'
+            ];
+
+        }
+        $views['dinner']=$dinner;
+        return view('dinner.edit')->with($views);
     }
 
+    /**
+     * Delete by id
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function delete($id)
     {
         $dinner = Dinner::find($id);
@@ -39,6 +64,12 @@ class DinnerController extends Controller
         return redirect(url('/dinner/edit'));
     }
 
+    /**
+     * Save it
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
 
@@ -66,5 +97,18 @@ class DinnerController extends Controller
         $dinner->save();
 
         return redirect('dinner/show');
+    }
+
+
+    public function search()
+    {
+        $search = request('search', '');
+        $searchList = Dinner::search($search)->paginate(15);
+
+        $views = [
+            'item' => 'Dinner',
+            'searchList' => $searchList
+        ];
+        return view('common.search')->with($views);
     }
 }

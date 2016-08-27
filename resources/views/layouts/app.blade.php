@@ -12,13 +12,9 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -40,12 +36,23 @@
             </a>
         </div>
 
+        <div class="col-sm-3 col-md-3 pull-right">
+            <form class="navbar-form" role="search" action="{{url('/search')}}" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="search" id="srch-term">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 <li><a href="{{ url('/dinner') }}">Dinner</a></li>
             </ul>
+
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
@@ -84,11 +91,16 @@
                     </li>
                 @endif
             </ul>
+
         </div>
+
+
     </div>
 </nav>
+    @include('common.tips')
     @yield('content')
    <!-- Scripts -->
     <script src="/js/app.js"></script>
+
 </body>
 </html>

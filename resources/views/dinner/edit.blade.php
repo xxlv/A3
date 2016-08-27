@@ -68,19 +68,21 @@
                             </div>
                         </div>
                     @else
+
+
                         <div class="panel-body">
                             <div class="container">
                                 <form action="/dinner/store" method="POST">
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label for="">Name</label>
-                                            <input type="text" name="name" value=""
+                                            <input type="text" name="name" value="{{ Auth::user()->name }}"
                                                    class="form-control">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="">Begin Date</label>
-                                            <input type="date" name="begin_at" value=""
+                                            <input type="date" name="begin_at" value="{{ date('m/d/Y') }}"
                                                    class="form-control">
                                         </div>
 
@@ -123,8 +125,9 @@
 
                             </div>
                         </div>
-
-
+                        <script>
+                            $("#datepicker").datepicker("setDate", new Date());
+                        </script>
                     @endif
 
                 </div>
