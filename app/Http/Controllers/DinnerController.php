@@ -38,7 +38,7 @@ class DinnerController extends Controller
         $views=[];
         $dinner = Dinner::where(['uid' => \Auth::user()->id])->first();
 
-        if ($dinner) {
+        if (!$dinner) {
 
             $views['tips']=[
                 'level'=>'success',

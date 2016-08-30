@@ -4,17 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>Laravel</title>
-
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
-
+    @yield('css')
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">
@@ -50,6 +45,7 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                <li><a href="{{ url('/articles') }}">Articles</a></li>
                 <li><a href="{{ url('/dinner') }}">Dinner</a></li>
             </ul>
 
@@ -70,6 +66,10 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+
+                            <li>
+                                <a href="{{ url('/profile') }}">Profile</a>
+                            </li>
                             <li>
                                 <a href="{{ url('/user/notifications')}}">Notifications</a>
                             </li>
@@ -81,8 +81,7 @@
                                     Logout
                                 </a>
 
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                      style="display: none;">
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             </li>

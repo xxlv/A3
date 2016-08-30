@@ -17,6 +17,7 @@ require('laravel-elixir-vue');
 elixir(function(mix) {
     var bootstrapPath = 'node_modules/bootstrap-sass/assets';
     mix.sass('app.scss')
+        .sass('profile.scss')
         .webpack('app.js')
         .copy(bootstrapPath + '/fonts', 'public/fonts')
         .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js');

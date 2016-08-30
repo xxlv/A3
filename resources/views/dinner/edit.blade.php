@@ -8,6 +8,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Dinner</div>
                     @include('common.errors')
+                  
                     @if($dinner)
                         <div class="panel-body">
                             <div class="container">
@@ -68,7 +69,6 @@
                             </div>
                         </div>
                     @else
-
 
                         <div class="panel-body">
                             <div class="container">
