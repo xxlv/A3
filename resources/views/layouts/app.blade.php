@@ -7,9 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laravel</title>
+    <script  src="/js/jquery.min.js"></script>
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     @yield('css')
+
 </head>
 <body>
 <nav class="navbar navbar-default navbar-static-top">

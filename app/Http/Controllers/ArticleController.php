@@ -21,7 +21,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles=Article::where(['uid'=>\Auth::id()])->get();
+        $articles=Article::where(['uid'=>\Auth::id()])->paginate(15);
         return view('articles.list')->with('articles',$articles);
     }
 
@@ -43,6 +43,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'desc' => 'required',
+            'label' => 'required'
+        ]);
+
         Article::create($request->all());
         return redirect('articles');
     }
@@ -67,7 +74,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article=Article::find($id);
+        return view('articles.edit')->with('article',$article);
     }
 
     /**
@@ -79,7 +87,17 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $in=$request->all();
+        $article=Article::find($id);
+
+        $article->title=$in['title'];
+        $article->content=$in['content'];
+        $article->desc=$in['desc'];
+        $article->label=$in['label'];
+        $article->save();
+
+        $request->session()->flash('tips',['status'=>'info','msg'=>'Your article was updated successfully!']);
+        return back();
     }
 
     /**
@@ -90,6 +108,13 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        $article->delete();
+        return back();
+    }
+
+
+    public function publish($id){
+        return back();
     }
 }

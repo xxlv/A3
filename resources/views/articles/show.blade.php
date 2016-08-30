@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading pane-info">{{ $article->title }} <span class="pull-right"><a href="{{ url('articles/create') }}">Post a new article</a></span></div>
+                <div class="panel-heading pane-info "><b style="color:#000">{{ $article->title }} </b> <span class="pull-right"></span></div>
 
                 @if(session()->has('tips'))
                     <div class="alert alert-{{ session('tips')['status']}}">
@@ -14,7 +14,7 @@
                     </div>
                 @endif
                 <div class="panel-body">
-                    {{ $article->content }}
+                    {!! $article->content !!}
                 </div>
             </div>
         </div>

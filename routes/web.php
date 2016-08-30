@@ -14,7 +14,10 @@
 
 Auth::routes();
 
+Route::get('articles/{id}/destory','ArticleController@destroy');
+Route::get('articles/{id}/publish','ArticleController@publish');
 Route::resource('articles','ArticleController');
+Route::resource('labels','ArticleLabelController');
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');

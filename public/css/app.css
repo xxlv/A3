@@ -5766,14 +5766,4 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-img {
-  -webkit-transition: .5s,filte;
-  transition: .5s,filte;
-  -webkit-filter: sepia(1) saturate(4) hue-rotate(295deg);
-  filter: sepia(1) saturate(4) hue-rotate(295deg); }
-
-img:hover, img:focus {
-  -webkit-filter: none;
-  filter: none; }
-
 /*# sourceMappingURL=app.css.map */

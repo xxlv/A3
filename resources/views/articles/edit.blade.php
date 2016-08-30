@@ -16,33 +16,35 @@
                 @include('common.errors')
 
                 <div class="panel-body">
-                    <form action="{{ url('articles') }}" method="POST" >
-                        <div class="">
+                    <form action="{{ url('articles/'.$article->id) }}" method="POST" >
+
+                        <div>
                             <div class="form-group">
                                 <label for="">Title</label>
-                                <input type="text" name="title" value="" class="form-control">
+                                <input type="text" name="title" value="{{ $article->title}}" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label for="">Label</label>
-                                <input type="text" name="label" value="" class="form-control">
+                                <input type="text" name="label" value="{{ $article->label}}" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 <label for="">Content</label>
-                                <textarea name="content" rows="8" cols="40" class="form-control"></textarea>
+                                <textarea name="content" rows="8" cols="40" class="form-control">{{ $article->content }}</textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Desc</label>
-                                <input type="text" name="desc" value="" class="form-control">
+                                <input type="text" name="desc" value="{{ $article->desc}}" class="form-control">
                             </div>
 
                             <div class="form-group">
                                 {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="put">
                                 <input type="hidden" name="uid" value="{{ \Auth::id() }}">
                                 <button type="submit" class="btn btn-primary">
-                                    Post it
+                                    Updae it
                                 </button>
                             </div>
 

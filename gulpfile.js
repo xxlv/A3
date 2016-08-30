@@ -16,9 +16,19 @@ require('laravel-elixir-vue');
 
 elixir(function(mix) {
     var bootstrapPath = 'node_modules/bootstrap-sass/assets';
+    var bootstrapMarkdownPath='node_modules/bootstrap-markdown';
+
+    var jq='node_modules/jQuery';
     mix.sass('app.scss')
         .sass('profile.scss')
         .webpack('app.js')
         .copy(bootstrapPath + '/fonts', 'public/fonts')
-        .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js');
+        .copy(bootstrapPath + '/javascripts/bootstrap.min.js', 'public/js')
+        .copy(bootstrapMarkdownPath+'/js/bootstrap-markdown.js','public/js')
+        .copy(bootstrapMarkdownPath+'/css/bootstrap-markdown.min.css','public/css')
+        .copy(jq+'/dist/jquery.min.js','public/js')
+        ;
+
+
+
 });
